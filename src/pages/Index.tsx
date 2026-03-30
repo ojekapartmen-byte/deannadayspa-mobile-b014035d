@@ -1,16 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import HeroSection from "@/components/spa/HeroSection";
+import CategoryScroll from "@/components/spa/CategoryScroll";
+import PremiumCards from "@/components/spa/PremiumCards";
+import ServiceSection from "@/components/spa/ServiceSection";
+import ContactSection from "@/components/spa/ContactSection";
+import BottomNav from "@/components/spa/BottomNav";
+import { massageServices, nailServices, pamperPackages } from "@/data/spaData";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen bg-background max-w-lg mx-auto relative">
+      <HeroSection />
+      <CategoryScroll />
+
+      <div id="services">
+        <ServiceSection title="Pamper" highlight="Package" services={pamperPackages} />
+      </div>
+
+      <div id="premium">
+        <PremiumCards />
+      </div>
+
+      <ServiceSection title="Massage" highlight="Treatments" services={massageServices} />
+      <ServiceSection title="Nails" highlight="& Beauty" services={nailServices} />
+
+      <ContactSection />
+
+      {/* Bottom nav spacer */}
+      <div className="h-16" />
+      <BottomNav />
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
