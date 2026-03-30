@@ -15,13 +15,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background max-w-lg mx-auto relative">
+      {/* 1. Hero / Banner Utama */}
       <HeroSection />
       
-      {/* Scroll Kategori Ikon */}
+      {/* 2. Kategori Ikon */}
       <CategoryScroll />
 
+      {/* 3. Section Premium & Beauty Rejuvenation */}
       <div id="services">
-        {/* Heading diubah menjadi Premium sesuai permintaanmu */}
         <ServiceSection 
           title="Premium" 
           highlight="Beauty & Rejuvenation" 
@@ -31,12 +32,12 @@ const Index = () => {
         />
       </div>
 
+      {/* 4. Kartu Premium (Opsional, jika ingin menonjolkan visual) */}
       <div id="premium">
-        {/* Section tambahan untuk kartu premium jika diperlukan */}
         <PremiumCards />
       </div>
 
-      {/* Section Treatment Lainnya */}
+      {/* 5. Section Treatment Lainnya */}
       <ServiceSection 
         title="Massage" 
         highlight="Treatments" 
@@ -53,14 +54,10 @@ const Index = () => {
         waNumber={waNumber} 
       />
 
-      {/* Bagian Kontak */}
+      {/* 6. Kontak & Footer */}
       <ContactSection />
 
-      {/* Spacing untuk Bottom Nav agar tidak tertutup */}
       <div className="h-16" />
       <BottomNav />
     </div>
   );
-};
-
-export default Index;
