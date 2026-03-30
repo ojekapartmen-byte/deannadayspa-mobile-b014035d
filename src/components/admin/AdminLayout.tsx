@@ -11,6 +11,7 @@ import {
   LogOut,
   Leaf,
   Loader2,
+  ImageIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -20,6 +21,7 @@ const navItems = [
   { label: "Premium", icon: Star, path: "/admin/premium" },
   { label: "Bookings", icon: CalendarCheck, path: "/admin/bookings" },
   { label: "Konten", icon: FileText, path: "/admin/content" },
+  { label: "Hero", icon: ImageIcon, path: "/admin/hero" },
 ];
 
 const AdminLayout = () => {

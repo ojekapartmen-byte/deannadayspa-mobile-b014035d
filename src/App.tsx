@@ -13,6 +13,7 @@ import AdminServices from "./pages/admin/AdminServices.tsx";
 import AdminBookings from "./pages/admin/AdminBookings.tsx";
 import AdminContent from "./pages/admin/AdminContent.tsx";
 import AdminPremium from "./pages/admin/AdminPremium.tsx";
+import AdminHero from "./pages/admin/AdminHero.tsx";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
               <Route path="premium" element={<AdminPremium />} />
               <Route path="bookings" element={<AdminBookings />} />
               <Route path="content" element={<AdminContent />} />
+              <Route path="hero" element={<AdminHero />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

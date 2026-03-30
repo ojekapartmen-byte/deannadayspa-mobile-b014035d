@@ -9,6 +9,8 @@ const HeroSection = () => {
   const title = content?.hero_title || "Deanna Day Spa";
   const subtitle = content?.hero_subtitle || "Treatments & Beauty";
   const description = content?.hero_description || "Indulge in a world of relaxation and beauty.";
+  const buttonText = content?.hero_button_text || "Contact Us";
+  const buttonVisible = content?.hero_button_visible !== "false";
 
   return (
     <section className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden">
@@ -31,16 +33,18 @@ const HeroSection = () => {
           </p>
         </motion.div>
 
-        <motion.a
-          href="#contact"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="inline-flex items-center gap-2 bg-accent text-accent-foreground font-body font-medium text-sm tracking-wider uppercase px-8 py-3.5 rounded-full shadow-elevated transition-transform hover:scale-105"
-        >
-          <Sparkles className="w-4 h-4" />
-          Contact Us
-        </motion.a>
+        {buttonVisible && (
+          <motion.a
+            href="#contact"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="inline-flex items-center gap-2 bg-accent text-accent-foreground font-body font-medium text-sm tracking-wider uppercase px-8 py-3.5 rounded-full shadow-elevated transition-transform hover:scale-105"
+          >
+            <Sparkles className="w-4 h-4" />
+            {buttonText}
+          </motion.a>
+        )}
       </div>
 
       <div className="absolute bottom-0 left-0 right-0">
