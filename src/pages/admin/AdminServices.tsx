@@ -11,6 +11,7 @@ import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
 import { Plus, Pencil, Trash2, Loader2 } from "lucide-react";
 import type { Tables, TablesInsert } from "@/integrations/supabase/types";
+import ImageUpload from "@/components/admin/ImageUpload";
 
 type Service = Tables<"services">;
 type ServiceOption = Tables<"service_options">;
@@ -150,10 +151,11 @@ const AdminServices = () => {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="space-y-2">
-                <Label>URL Gambar</Label>
-                <Input value={form.image_url ?? ""} onChange={(e) => setForm({ ...form, image_url: e.target.value })} />
-              </div>
+              <ImageUpload
+                value={form.image_url ?? ""}
+                onChange={(url) => setForm({ ...form, image_url: url })}
+                folder="services"
+              />
               <div className="space-y-2">
                 <Label>Urutan</Label>
                 <Input type="number" value={form.sort_order} onChange={(e) => setForm({ ...form, sort_order: Number(e.target.value) })} />

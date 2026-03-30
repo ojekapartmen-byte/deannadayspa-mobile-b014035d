@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Plus, Pencil, Trash2, Loader2 } from "lucide-react";
 import type { Tables, TablesInsert } from "@/integrations/supabase/types";
+import ImageUpload from "@/components/admin/ImageUpload";
 
 type Premium = Tables<"premium_services">;
 
@@ -95,10 +96,11 @@ const AdminPremium = () => {
                 <Label>Subtitle</Label>
                 <Input value={form.subtitle ?? ""} onChange={(e) => setForm({ ...form, subtitle: e.target.value })} />
               </div>
-              <div className="space-y-2">
-                <Label>URL Gambar</Label>
-                <Input value={form.image_url ?? ""} onChange={(e) => setForm({ ...form, image_url: e.target.value })} />
-              </div>
+              <ImageUpload
+                value={form.image_url ?? ""}
+                onChange={(url) => setForm({ ...form, image_url: url })}
+                folder="premium"
+              />
               <div className="space-y-2">
                 <Label>Items (satu per baris)</Label>
                 <Textarea value={itemsText} onChange={(e) => setItemsText(e.target.value)} rows={5} />
