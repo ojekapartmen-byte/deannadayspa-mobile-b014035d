@@ -5,7 +5,7 @@ import { useSiteContent } from "@/hooks/useSpaData";
 const HeroSection = () => {
   const { data: content } = useSiteContent();
 
-  // Gambar latar belakang (bisa diganti via dashboard atau tetap default)
+  // Gambar latar belakang (tetap menggunakan default agar tidak error)
   const heroImage = content?.hero_image || "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&w=1200&h=800";
   
   // Teks Berdasarkan Brosur Deanna Spa
@@ -27,7 +27,7 @@ const HeroSection = () => {
         <div 
           className="absolute inset-0" 
           style={{ 
-            background: 'linear-gradient(180deg, rgba(0, 96, 100, 0.7) 0%, rgba(0, 77, 64, 0.85) 100%)' 
+            background: 'linear-gradient(180deg, rgba(0, 96, 100, 0.75) 0%, rgba(0, 77, 64, 0.9) 100%)' 
           }} 
         />
       </div>
@@ -39,32 +39,32 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          {/* Welcome Text in Gold */}
-          <p className="text-[#D4A373] tracking-[0.4em] text-xs font-semibold uppercase mb-6 drop-shadow-sm">
+          {/* Welcome Text in White */}
+          <p className="text-white/90 tracking-[0.4em] text-xs font-semibold uppercase mb-6 drop-shadow-sm">
             Welcome to Deanna
           </p>
           
-          {/* Slogan Title */}
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-7xl leading-tight mb-6 text-white drop-shadow-md">
+          {/* Slogan Title - Pure White */}
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl leading-tight mb-6 text-white drop-shadow-md">
             {title}<br />
-            <span className="italic font-light text-2xl sm:text-4xl lg:text-5xl opacity-90">
+            <span className="italic font-light text-2xl sm:text-4xl lg:text-5xl text-white">
               {subtitle}
             </span>
           </h1>
           
-          {/* Description */}
-          <p className="text-white/90 font-light text-base sm:text-lg leading-relaxed mb-10 max-w-xl mx-auto">
+          {/* Description - White with 85% Opacity */}
+          <p className="text-white/85 font-body text-base sm:text-lg leading-relaxed mb-10 max-w-xl mx-auto">
             {description}
           </p>
 
-          {/* Action Button - Gold/Tan Color from Brochure */}
+          {/* Action Button - Updated color to match brochure's main Teal color */}
           <motion.a
             href="#contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 bg-[#D4A373] text-white font-medium text-sm tracking-widest uppercase px-10 py-4 rounded-full shadow-2xl transition-all duration-300 hover:bg-[#B88A5B]"
+            className="inline-flex items-center gap-3 bg-[#00A89F] text-white font-body font-medium text-sm tracking-widest uppercase px-10 py-4 rounded-full shadow-2xl transition-all duration-300 hover:bg-[#00928B]"
           >
-            <Sparkles className="w-4 h-4" />
+            <Sparkles className="w-4 h-4 text-white" />
             {buttonText}
           </motion.a>
         </motion.div>
