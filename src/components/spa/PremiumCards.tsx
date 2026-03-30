@@ -1,7 +1,22 @@
 import { motion } from "framer-motion";
-import { premiumServices, WA_NUMBER } from "@/data/spaData";
+import { usePremiumServices, useSiteContent, getBookingUrl } from "@/hooks/useSpaData";
+import { Loader2 } from "lucide-react";
 
 const PremiumCards = () => {
+  const { data: premiums, isLoading } = usePremiumServices();
+  const { data: content } = useSiteContent();
+  const waNumber = content?.wa_number || "6281999231518";
+
+  if (isLoading) {
+    return (
+      <section className="py-10 px-4 flex justify-center">
+        <Loader2 className="w-6 h-6 animate-spin text-primary" />
+      </section>
+    );
+  }
+
+  if (!premiums?.length) return null;
+
   return (
     <section className="py-10 px-4">
       <h2 className="font-display text-2xl text-foreground mb-6 px-1">
@@ -9,9 +24,9 @@ const PremiumCards = () => {
       </h2>
 
       <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
-        {premiumServices.map((service, i) => (
+        {premiums.map((service, i) => (
           <motion.div
-            key={service.title}
+            key={service.id}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -19,12 +34,10 @@ const PremiumCards = () => {
             className="min-w-[280px] max-w-[280px] rounded-xl overflow-hidden shadow-card bg-card flex-shrink-0 snap-center"
           >
             <div className="relative h-40">
-              <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+              <img src={service.image_url || ""} alt={service.title} className="w-full h-full object-cover" />
               <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, hsl(200 25% 15% / 0.6), transparent)' }} />
               <div className="absolute bottom-3 left-4 right-4">
-                <h3 className="font-display text-base text-primary-foreground font-semibold">
-                  {service.title}
-                </h3>
+                <h3 className="font-display text-base text-primary-foreground font-semibold">{service.title}</h3>
                 {service.subtitle && (
                   <p className="text-xs text-primary-foreground/80 font-body mt-0.5">{service.subtitle}</p>
                 )}
@@ -32,7 +45,7 @@ const PremiumCards = () => {
             </div>
             <div className="p-4">
               <ul className="space-y-1.5 mb-4">
-                {service.items.map((item) => (
+                {(service.items ?? []).map((item) => (
                   <li key={item} className="text-xs font-body text-muted-foreground flex items-start gap-2">
                     <span className="w-1 h-1 rounded-full bg-accent mt-1.5 flex-shrink-0" />
                     {item}
@@ -40,7 +53,7 @@ const PremiumCards = () => {
                 ))}
               </ul>
               <a
-                href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi, I'd like to book ${service.title}`)}`}
+                href={getBookingUrl(service.title, waNumber)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full text-center bg-primary text-primary-foreground text-xs font-body font-semibold tracking-wider uppercase py-2.5 rounded-lg transition-transform hover:scale-[1.02]"

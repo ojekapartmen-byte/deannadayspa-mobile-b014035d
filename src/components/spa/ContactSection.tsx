@@ -1,7 +1,12 @@
 import { Phone, MapPin, MessageCircle } from "lucide-react";
-import { WA_NUMBER } from "@/data/spaData";
+import { useSiteContent } from "@/hooks/useSpaData";
 
 const ContactSection = () => {
+  const { data: content } = useSiteContent();
+  const waNumber = content?.wa_number || "6281999231518";
+  const address = content?.contact_address || "Bali, Indonesia";
+  const email = content?.contact_email || "";
+
   return (
     <section id="contact" className="py-12 px-4 bg-spa-teal-light">
       <div className="max-w-md mx-auto text-center">
@@ -17,7 +22,7 @@ const ContactSection = () => {
             </div>
             <div className="text-left">
               <p className="text-xs text-muted-foreground font-body">WhatsApp</p>
-              <p className="text-sm font-body font-medium text-foreground">+62 819 9923 1518</p>
+              <p className="text-sm font-body font-medium text-foreground">+{waNumber.replace(/(\d{2})(\d{3})(\d{4})(\d{4})/, '$1 $2 $3 $4')}</p>
             </div>
           </div>
           <div className="flex items-center gap-3 bg-card rounded-xl p-4 shadow-card">
@@ -26,13 +31,13 @@ const ContactSection = () => {
             </div>
             <div className="text-left">
               <p className="text-xs text-muted-foreground font-body">Location</p>
-              <p className="text-sm font-body font-medium text-foreground">Bali, Indonesia</p>
+              <p className="text-sm font-body font-medium text-foreground">{address}</p>
             </div>
           </div>
         </div>
 
         <a
-          href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi, I'd like to make an appointment")}`}
+          href={`https://wa.me/${waNumber}?text=${encodeURIComponent("Hi, I'd like to make an appointment")}`}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-accent text-accent-foreground font-body font-semibold text-sm tracking-wider uppercase px-8 py-3.5 rounded-full shadow-elevated transition-transform hover:scale-105"
