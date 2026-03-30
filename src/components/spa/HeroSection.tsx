@@ -1,38 +1,35 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <meta name="google-site-verification" content="T3YPv-c1JykpjB9hy5atp-ZN4fuYcE2D1JV35k4-p5A" />
+import React from "react";
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEGL49C129"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+const HeroSection = () => {
+  return (
+    <section className="relative h-[400px] w-full overflow-hidden">
+      {/* Background Image / Overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ 
+          backgroundImage: "url('https://images.unsplash.com/photo-1540555700371-41c1741f1a9a?q=80&w=2070&auto=format&fit=crop')" 
+        }}
+      >
+        <div className="absolute inset-0 bg-black/30" />
+      </div>
 
-      gtag('config', 'G-SEGL49C129');
-    </script>
+      {/* Content */}
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center text-white">
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          Deanna Day Spa
+        </h1>
+        <p className="mt-4 max-w-lg text-lg text-white/90">
+          Rejuvenate Your Body and Soul with Our Premium Beauty Treatments
+        </p>
+        <button 
+          className="mt-8 rounded-full bg-white px-8 py-3 text-sm font-semibold text-black transition-hover hover:bg-opacity-90"
+          onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+        >
+          Explore Services
+        </button>
+      </div>
+    </section>
+  );
+};
 
-    <title>SEWA APARTEMEN PER JAM GRESIK</title>
-    <meta name="description" content="Rekomendasi Sewa Apartemen Per Jam/Transit Gresik">
-    <meta name="author" content="Lovable" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/dg7f8ZXRm0deGNbI2zQiFlKoeEB3/social-images/social-1774826632651-WhatsApp_Image_2026-03-24_at_13.41.15_(1).webp">
-    <meta property="og:title" content="SEWA APARTEMEN PER JAM GRESIK">
-    <meta property="og:description" content="Rekomendasi Sewa Apartemen Per Jam/Transit Gresik">
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/dg7f8ZXRm0deGNbI2zQiFlKoeEB3/social-images/social-1774826632651-WhatsApp_Image_2026-03-24_at_13.41.15_(1).webp">
-    <meta name="twitter:title" content="SEWA APARTEMEN PER JAM GRESIK">
-    <meta name="twitter:description" content="Rekomendasi Sewa Apartemen Per Jam/Transit Gresik">
-  </head>
-
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+export default HeroSection;
