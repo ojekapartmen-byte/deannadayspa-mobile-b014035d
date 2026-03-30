@@ -32,6 +32,7 @@ const App = () => (
               <Route path="premium" element={<AdminPremium />} />
               <Route path="bookings" element={<AdminBookings />} />
               <Route path="content" element={<AdminContent />} />
+              <Route path="hero" element={<AdminHero />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
