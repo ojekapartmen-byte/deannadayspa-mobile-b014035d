@@ -16,21 +16,47 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background max-w-lg mx-auto relative">
       <HeroSection />
+      
+      {/* Scroll Kategori Ikon */}
       <CategoryScroll />
 
       <div id="services">
-        <ServiceSection title="Premium" highlight=" & Beauty Rejuvenation" services={pamperServices} isLoading={pamperLoading} waNumber={waNumber} />
+        {/* Heading diubah menjadi Premium sesuai permintaanmu */}
+        <ServiceSection 
+          title="Premium" 
+          highlight="Beauty & Rejuvenation" 
+          services={pamperServices} 
+          isLoading={pamperLoading} 
+          waNumber={waNumber} 
+        />
       </div>
 
       <div id="premium">
+        {/* Section tambahan untuk kartu premium jika diperlukan */}
         <PremiumCards />
       </div>
 
-      <ServiceSection title="Massage" highlight="Treatments" services={massageServices} isLoading={massageLoading} waNumber={waNumber} />
-      <ServiceSection title="Nails" highlight="& Beauty" services={nailServices} isLoading={nailsLoading} waNumber={waNumber} />
+      {/* Section Treatment Lainnya */}
+      <ServiceSection 
+        title="Massage" 
+        highlight="Treatments" 
+        services={massageServices} 
+        isLoading={massageLoading} 
+        waNumber={waNumber} 
+      />
+      
+      <ServiceSection 
+        title="Nails" 
+        highlight="& Beauty" 
+        services={nailServices} 
+        isLoading={nailsLoading} 
+        waNumber={waNumber} 
+      />
 
+      {/* Bagian Kontak */}
       <ContactSection />
 
+      {/* Spacing untuk Bottom Nav agar tidak tertutup */}
       <div className="h-16" />
       <BottomNav />
     </div>
