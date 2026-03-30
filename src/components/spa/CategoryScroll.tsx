@@ -4,7 +4,15 @@ import { categories } from "@/data/spaData";
 const CategoryScroll = () => {
   return (
     <section className="py-8 px-4">
-      <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory">
+      <div
+        className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory scroll-smooth"
+        style={{
+          WebkitOverflowScrolling: 'touch',
+          touchAction: 'pan-x',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+        }}
+      >
         {categories.map((cat, i) => (
           <motion.div
             key={cat.name}
