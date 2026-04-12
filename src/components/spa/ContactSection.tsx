@@ -40,7 +40,7 @@ const ContactSection = () => {
           href={`https://wa.me/${waNumber}?text=${encodeURIComponent("Hi, I'd like to make an appointment")}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-accent text-accent-foreground font-body font-semibold text-sm tracking-wider uppercase px-8 py-3.5 rounded-full shadow-elevated transition-transform hover:scale-105"
+          className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold text-sm tracking-wider uppercase px-8 py-3.5 rounded-full shadow-elevated transition-transform hover:scale-105"
         >
           <MessageCircle className="w-4 h-4" />
           Chat on WhatsApp

@@ -6,12 +6,14 @@ const HeroSection = () => {
   const { data: content, isLoading } = useSiteContent();
 
   if (isLoading) {
-    return <div className="h-[500px] w-full bg-slate-100 animate-pulse" />;
+    return <div className="h-[500px] w-full bg-muted animate-pulse" />;
   }
 
   const heroTitle = content?.hero_title || "Deanna Day Spa";
-  const heroSubtitle = content?.hero_subtitle || "Professional spa treatments in the comfort of your villa or visit our studio in Seminyak, Bali.";
+  const heroSubtitle = content?.hero_subtitle || "Soothe the Soul. Relax the Body. Refresh the Mind";
+  const heroDescription = content?.hero_description || "Professional spa treatments in the comfort of your villa or visit our studio in Seminyak, Bali.";
   const heroButtonText = content?.hero_button_text || "Contact Us";
+  const heroButtonVisible = content?.hero_button_visible !== "false";
   const heroImageUrl = content?.hero_image || 'https://images.unsplash.com/photo-1540555700371-41c1741f1a9a?q=80&w=2070&auto=format&fit=crop';
   const waNumber = content?.wa_number || "6281999231518";
 
@@ -30,26 +32,24 @@ const HeroSection = () => {
       </div>
 
       <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white px-4">
-        <span className="text-[11px] font-medium text-white/70 uppercase tracking-[0.2em] mb-2">
-          PREVIEW
-        </span>
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
           {heroTitle}
         </h1>
         <p className="text-lg text-white/90 font-medium italic mt-3 max-w-lg">
-          Soothe the Soul. Relax the Body. Refresh the Mind
-        </p>
-        <p className="mt-4 max-w-md text-sm text-white/80 leading-relaxed">
           {heroSubtitle}
         </p>
+        <p className="mt-4 max-w-md text-sm text-white/80 leading-relaxed">
+          {heroDescription}
+        </p>
         
-        {/* Tombol dengan warna baru #40a3da */}
-        <Button 
-          onClick={handleContactUs}
-          className="mt-8 bg-[#40a3da] hover:bg-[#358bb8] text-white font-semibold text-base px-10 py-6 rounded-full shadow-xl transition-all active:scale-95"
-        >
-          {heroButtonText}
-        </Button>
+        {heroButtonVisible && (
+          <Button 
+            onClick={handleContactUs}
+            className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-base px-10 py-6 rounded-full shadow-xl transition-all active:scale-95"
+          >
+            {heroButtonText}
+          </Button>
+        )}
       </div>
     </section>
   );
