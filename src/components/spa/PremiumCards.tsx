@@ -35,7 +35,7 @@ const PremiumCards = () => {
           >
             <div className="relative h-40">
               <img src={service.image_url || ""} alt={service.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, hsl(200 25% 15% / 0.6), transparent)' }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
               <div className="absolute bottom-3 left-4 right-4">
                 <h3 className="font-display text-base text-primary-foreground font-semibold">{service.title}</h3>
                 {service.subtitle && (
