@@ -21,7 +21,12 @@ const Index = () => {
       {/* 2. Kategori Ikon */}
       <CategoryScroll />
 
-      {/* 3. Section Premium & Beauty Rejuvenation (Sesuai Permintaan) */}
+      {/* 3. Section Premium Cards */}
+      <div id="premium">
+        <PremiumCards />
+      </div>
+
+      {/* 4. Section Premium & Beauty Rejuvenation */}
       <div id="services">
         <ServiceSection 
           title="Premium" 
@@ -30,11 +35,6 @@ const Index = () => {
           isLoading={pamperLoading} 
           waNumber={waNumber} 
         />
-      </div>
-
-      {/* 4. Section Premium Cards */}
-      <div id="premium">
-        <PremiumCards />
       </div>
 
       {/* 5. Section Massage */}
