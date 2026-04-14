@@ -2,6 +2,7 @@ import HeroSection from "@/components/spa/HeroSection";
 import CategoryScroll from "@/components/spa/CategoryScroll";
 import PremiumCards from "@/components/spa/PremiumCards";
 import ServiceSection from "@/components/spa/ServiceSection";
+import ServiceScrollSection from "@/components/spa/ServiceScrollSection";
 import ContactSection from "@/components/spa/ContactSection";
 import BottomNav from "@/components/spa/BottomNav";
 import { useServices, useSiteContent } from "@/hooks/useSpaData";
