@@ -35,8 +35,6 @@ const Index = () => {
         waNumber={waNumber} 
       />
 
-
-
       {/* 5. Section Massage */}
       <ServiceSection 
         title="Massage" 
@@ -57,9 +55,8 @@ const Index = () => {
 
       {/* 7. Bagian Kontak */}
       <ContactSection />
-
-  
+    </div>
   );
-}; // <-- Kurung penutup ini yang sebelumnya hilang
+};
 
-export default Index; // <-- Baris ini juga harus ada di paling bawah
+export default Index;
