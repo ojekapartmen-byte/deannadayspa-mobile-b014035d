@@ -216,9 +216,16 @@ const AdminPamper = () => {
                   <p className="text-sm font-medium">{opt.name}</p>
                   <p className="text-xs text-muted-foreground">{opt.price}</p>
                 </div>
-                <Button variant="ghost" size="icon" onClick={() => deleteOptionMutation.mutate(opt.id)}>
-                  <Trash2 className="w-4 h-4 text-destructive" />
-                </Button>
+                <div className="flex gap-1">
+                  <a href={getBookingUrl(opt.booking_text)} target="_blank" rel="noopener noreferrer">
+                    <Button variant="ghost" size="icon" title="Buka link booking">
+                      <ExternalLink className="w-4 h-4 text-primary" />
+                    </Button>
+                  </a>
+                  <Button variant="ghost" size="icon" onClick={() => deleteOptionMutation.mutate(opt.id)}>
+                    <Trash2 className="w-4 h-4 text-destructive" />
+                  </Button>
+                </div>
               </div>
             ))}
           </div>
