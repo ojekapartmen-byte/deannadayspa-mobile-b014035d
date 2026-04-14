@@ -12,6 +12,7 @@ import {
   Leaf,
   Loader2,
   ImageIcon,
+  Gift,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -19,6 +20,7 @@ const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, path: "/admin" },
   { label: "Services", icon: Scissors, path: "/admin/services" },
   { label: "Premium", icon: Star, path: "/admin/premium" },
+  { label: "Pamper", icon: Gift, path: "/admin/pamper" },
   { label: "Bookings", icon: CalendarCheck, path: "/admin/bookings" },
   { label: "Konten", icon: FileText, path: "/admin/content" },
   { label: "Hero", icon: ImageIcon, path: "/admin/hero" },
