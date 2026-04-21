@@ -19,46 +19,45 @@ const Index = () => {
       <DesktopNav />
       
       <div className="md:pt-16">
-     
-      <HeroSection />
-      
-      {/* 2. Kategori Ikon */}
-      <CategoryScroll />
+        <HeroSection />
+        
+        {/* 2. Kategori Ikon */}
+        <CategoryScroll />
 
-      {/* 3. Section Premium Cards */}
-      <div id="premium">
-        <PremiumCards />
-      </div>
+        {/* 3. Section Premium Cards */}
+        <div id="premium">
+          <PremiumCards />
+        </div>
 
-      {/* 4. Section Pamper Package (horizontal scroll) */}
-      <ServiceScrollSection 
-        title="Pamper" 
-        highlight="Package" 
-        services={pamperServices} 
-        isLoading={pamperLoading} 
-        waNumber={waNumber} 
-      />
+        {/* 4. Section Pamper Package (horizontal scroll) */}
+        <ServiceScrollSection 
+          title="Pamper" 
+          highlight="Package" 
+          services={pamperServices} 
+          isLoading={pamperLoading} 
+          waNumber={waNumber} 
+        />
 
-      {/* 5. Section Massage */}
-      <ServiceSection 
-        title="Massage" 
-        highlight="Treatments" 
-        services={massageServices} 
-        isLoading={massageLoading} 
-        waNumber={waNumber} 
-      />
-      
-      {/* 6. Section Nails */}
-      <ServiceSection 
-        title="Nails" 
-        highlight="& Beauty" 
-        services={nailServices} 
-        isLoading={nailsLoading} 
-        waNumber={waNumber} 
-      />
+        {/* 5. Section Massage */}
+        <ServiceSection 
+          title="Massage" 
+          highlight="Treatments" 
+          services={massageServices} 
+          isLoading={massageLoading} 
+          waNumber={waNumber} 
+        />
+        
+        {/* 6. Section Nails */}
+        <ServiceSection 
+          title="Nails" 
+          highlight="& Beauty" 
+          services={nailServices} 
+          isLoading={nailsLoading} 
+          waNumber={waNumber} 
+        />
 
-      {/* 7. Bagian Kontak */}
-      <ContactSection />
+        {/* 7. Bagian Kontak */}
+        <ContactSection />
       </div>
     </div>
   );
