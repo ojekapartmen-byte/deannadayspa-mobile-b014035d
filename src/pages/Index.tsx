@@ -15,21 +15,27 @@ const Index = () => {
   const waNumber = content?.wa_number || "6281999231518";
 
   return (
-    <div className="min-h-screen bg-background max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto relative">
+    <div className="min-h-screen bg-background relative w-full">
+      {/* DesktopNav tetap ada (jika isinya null, tidak akan muncul apa-apa) */}
       <DesktopNav />
       
-      <div className="md:pt-16">
+      {/* 1. Hero Section: Dibuat benar-benar full width */}
+      <div className="w-full">
         <HeroSection />
+      </div>
+      
+      {/* 2. Container untuk konten lainnya agar tetap rapi di tengah */}
+      <div className="max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-4">
         
-        {/* 2. Kategori Ikon */}
+        {/* Kategori Ikon */}
         <CategoryScroll />
 
-        {/* 3. Section Premium Cards */}
+        {/* Section Premium Cards */}
         <div id="premium">
           <PremiumCards />
         </div>
 
-        {/* 4. Section Pamper Package (horizontal scroll) */}
+        {/* Section Pamper Package */}
         <ServiceScrollSection 
           title="Pamper" 
           highlight="Package" 
@@ -38,7 +44,7 @@ const Index = () => {
           waNumber={waNumber} 
         />
 
-        {/* 5. Section Massage */}
+        {/* Section Massage */}
         <ServiceSection 
           title="Massage" 
           highlight="Treatments" 
@@ -47,7 +53,7 @@ const Index = () => {
           waNumber={waNumber} 
         />
         
-        {/* 6. Section Nails */}
+        {/* Section Nails */}
         <ServiceSection 
           title="Nails" 
           highlight="& Beauty" 
@@ -56,7 +62,7 @@ const Index = () => {
           waNumber={waNumber} 
         />
 
-        {/* 7. Bagian Kontak */}
+        {/* Bagian Kontak */}
         <ContactSection />
       </div>
     </div>
