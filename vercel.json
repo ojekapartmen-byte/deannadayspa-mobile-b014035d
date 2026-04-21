@@ -5,11 +5,11 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "frame-ancestors 'self' *"
+          "value": "frame-ancestors 'self' https://deannadayspa.com https://*.deannadayspa.com"
         },
         {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
+          "key": "X-Frame-Options",
+          "value": "ALLOWALL"
         }
       ]
     }
