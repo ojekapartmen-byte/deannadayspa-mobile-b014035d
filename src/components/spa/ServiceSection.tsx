@@ -28,7 +28,7 @@ const ServiceSection = ({ title, highlight, services, isLoading, waNumber = "628
         {highlight && <span className="italic text-primary">{highlight}</span>}
       </h2>
 
-      <div className="space-y-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {services.map((service, i) => (
           <motion.div
             key={service.id}
@@ -36,7 +36,7 @@ const ServiceSection = ({ title, highlight, services, isLoading, waNumber = "628
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.08 }}
-            className="rounded-2xl overflow-hidden shadow-elevated relative"
+            className="rounded-2xl overflow-hidden shadow-elevated relative min-h-[280px]"
           >
             {/* Full-cover background image */}
             <img
