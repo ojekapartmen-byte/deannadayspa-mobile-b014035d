@@ -8,7 +8,7 @@ const ContactSection = () => {
   const email = content?.contact_email || "";
 
   return (
-    <section id="contact" className="py-12 md:py-16 px-4 bg-spa-teal-light">
+    <section id="contact" className="py-12 md:py-16 px-4 bg-spa-teal-light pb-24 md:pb-16">
       <div className="max-w-md md:max-w-2xl lg:max-w-4xl mx-auto text-center">
         <h2 className="font-display text-2xl md:text-3xl lg:text-4xl text-foreground mb-2">Get in Touch</h2>
         <p className="text-sm md:text-base font-body text-muted-foreground mb-8 md:mb-10">
