@@ -4,6 +4,7 @@ import PremiumCards from "@/components/spa/PremiumCards";
 import ServiceSection from "@/components/spa/ServiceSection";
 import ServiceScrollSection from "@/components/spa/ServiceScrollSection";
 import ContactSection from "@/components/spa/ContactSection";
+import DesktopNav from "@/components/spa/DesktopNav";
 import { useServices, useSiteContent } from "@/hooks/useSpaData";
 
 const Index = () => {
@@ -15,6 +16,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto relative">
+      <DesktopNav />
+      
+      <div className="md:pt-16">
      
       <HeroSection />
       
