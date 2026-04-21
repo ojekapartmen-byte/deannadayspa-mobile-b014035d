@@ -23,7 +23,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative h-[500px] w-full overflow-hidden">
+    <section className="relative h-[500px] md:h-[600px] lg:h-[700px] w-full overflow-hidden">
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url('${heroImageUrl}')` }}
@@ -31,21 +31,21 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-black/50" />
       </div>
 
-      <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white px-4">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+      <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white px-4 md:px-8">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
           {heroTitle}
         </h1>
-        <p className="text-lg text-white/90 font-medium italic mt-3 max-w-lg">
+        <p className="text-lg md:text-xl lg:text-2xl text-white/90 font-medium italic mt-3 max-w-2xl">
           {heroSubtitle}
         </p>
-        <p className="mt-4 max-w-md text-sm text-white/80 leading-relaxed">
+        <p className="mt-4 max-w-xl md:max-w-2xl text-sm md:text-base text-white/80 leading-relaxed">
           {heroDescription}
         </p>
         
         {heroButtonVisible && (
           <Button 
             onClick={handleContactUs}
-            className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-base px-10 py-6 rounded-full shadow-xl transition-all active:scale-95"
+            className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-base md:text-lg px-10 md:px-14 py-6 md:py-7 rounded-full shadow-xl transition-all active:scale-95"
           >
             {heroButtonText}
           </Button>
