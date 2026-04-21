@@ -31,7 +31,7 @@ const PremiumCards = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="min-w-[280px] max-w-[280px] rounded-xl overflow-hidden shadow-card bg-card flex-shrink-0 snap-center md:min-w-0 md:max-w-none md:w-full"
+            className="min-w-[280px] max-w-[280px] rounded-xl overflow-hidden shadow-card bg-card flex-shrink-0 snap-center md:min-w-0 md:max-w-none md:w-full lg:max-w-[320px] xl:max-w-none"
           >
             <div className="relative h-40">
               <img src={service.image_url || ""} alt={service.title} className="w-full h-full object-cover" />

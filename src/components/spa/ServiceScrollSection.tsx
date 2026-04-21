@@ -36,7 +36,7 @@ const ServiceScrollSection = ({ title, highlight, services, isLoading, waNumber 
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.08 }}
-            className="min-w-[300px] w-[85vw] max-w-[340px] snap-center shrink-0 rounded-2xl overflow-hidden shadow-elevated relative md:min-w-0 md:w-full md:max-w-none"
+            className="min-w-[300px] w-[85vw] max-w-[340px] snap-center shrink-0 rounded-2xl overflow-hidden shadow-elevated relative md:min-w-0 md:w-full md:max-w-none lg:max-w-[360px] xl:max-w-none"
           >
             {/* Full-cover background image */}
             <img
