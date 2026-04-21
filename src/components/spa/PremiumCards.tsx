@@ -23,7 +23,7 @@ const PremiumCards = () => {
         Premium & Beauty <span className="italic text-primary">Rejuvenation</span>
       </h2>
 
-      <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-2 md:overflow-visible md:snap-none">
+      <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:overflow-visible md:snap-none">
         {premiums.map((service, i) => (
           <motion.div
             key={service.id}

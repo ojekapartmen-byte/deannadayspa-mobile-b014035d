@@ -28,7 +28,7 @@ const ServiceScrollSection = ({ title, highlight, services, isLoading, waNumber 
         {highlight && <span className="italic text-primary">{highlight}</span>}
       </h2>
 
-      <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-4 pb-4 scrollbar-hide md:grid md:grid-cols-2 md:overflow-visible md:snap-none">
+      <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-4 pb-4 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:overflow-visible md:snap-none">
         {services.map((service, i) => (
           <motion.div
             key={service.id}

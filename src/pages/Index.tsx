@@ -14,7 +14,7 @@ const Index = () => {
   const waNumber = content?.wa_number || "6281999231518";
 
   return (
-    <div className="min-h-screen bg-background max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl mx-auto relative">
+    <div className="min-h-screen bg-background max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto relative">
      
       <HeroSection />
       
