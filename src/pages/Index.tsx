@@ -15,7 +15,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto relative">
-      {/* 1. Hero Section */}
+     
       <HeroSection />
       
       {/* 2. Kategori Ikon */}
