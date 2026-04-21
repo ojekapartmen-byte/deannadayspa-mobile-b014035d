@@ -23,33 +23,42 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative h-[500px] md:h-[600px] lg:h-[700px] w-full overflow-hidden">
+    <section className="relative w-full h-[600px] md:h-[80vh] lg:h-screen min-h-[500px] overflow-hidden">
+      {/* Background Layer */}
       <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url('${heroImageUrl}')` }}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500"
+        style={{ 
+          backgroundImage: `url('${heroImageUrl}')`,
+          width: '100%',
+          height: '100%'
+        }}
       >
-        <div className="absolute inset-0 bg-black/50" />
+        {/* Overlay agar teks terbaca */}
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
-      <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white px-4 md:px-8">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-          {heroTitle}
-        </h1>
-        <p className="text-lg md:text-xl lg:text-2xl text-white/90 font-medium italic mt-3 max-w-2xl">
-          {heroSubtitle}
-        </p>
-        <p className="mt-4 max-w-xl md:max-w-2xl text-sm md:text-base text-white/80 leading-relaxed">
-          {heroDescription}
-        </p>
-        
-        {heroButtonVisible && (
-          <Button 
-            onClick={handleContactUs}
-            className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-base md:text-lg px-10 md:px-14 py-6 md:py-7 rounded-full shadow-xl transition-all active:scale-95"
-          >
-            {heroButtonText}
-          </Button>
-        )}
+      {/* Content Layer */}
+      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center text-center text-white px-4 md:px-8">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight drop-shadow-lg">
+            {heroTitle}
+          </h1>
+          <p className="text-lg md:text-2xl lg:text-3xl text-white/95 font-medium italic mt-4 drop-shadow-md">
+            {heroSubtitle}
+          </p>
+          <p className="mt-6 max-w-xl md:max-w-2xl mx-auto text-sm md:text-lg text-white/90 leading-relaxed drop-shadow-sm">
+            {heroDescription}
+          </p>
+          
+          {heroButtonVisible && (
+            <Button 
+              onClick={handleContactUs}
+              className="mt-10 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-base md:text-xl px-10 md:px-16 py-7 md:py-8 rounded-full shadow-2xl transition-all hover:scale-105 active:scale-95"
+            >
+              {heroButtonText}
+            </Button>
+          )}
+        </div>
       </div>
     </section>
   );
