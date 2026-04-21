@@ -59,6 +59,7 @@ const Index = () => {
 
       {/* 7. Bagian Kontak */}
       <ContactSection />
+      </div>
     </div>
   );
 };
