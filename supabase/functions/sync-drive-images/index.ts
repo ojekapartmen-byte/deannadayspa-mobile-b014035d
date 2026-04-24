@@ -100,55 +100,58 @@ Deno.serve(async (req) => {
       pageSize: "500",
     });
 
-    // 2. Get services
-    const { data: services, error: svcErr } = await admin
-      .from("services").select("id,title,image_url").eq("is_active", true);
-    if (svcErr) throw svcErr;
-
     const results: any[] = [];
 
-    for (const svc of services!) {
-      // find best matching folder
-      let best: { folder: any; score: number } | null = null;
-      for (const f of folders.files) {
-        const score = similarity(svc.title, f.name);
-        if (!best || score > best.score) best = { folder: f, score };
-      }
-      if (!best || best.score < 0.4) {
-        results.push({ service: svc.title, status: "no_match" });
-        continue;
-      }
+    async function syncTable(table: "services" | "premium_services") {
+      const { data: rows, error } = await admin
+        .from(table).select("id,title").eq("is_active", true);
+      if (error) throw error;
 
-      // list images in folder
-      const imgs = await driveFetch("/files", {
-        q: `'${best.folder.id}' in parents and mimeType contains 'image/' and trashed=false`,
-        fields: "files(id,name,mimeType)",
-        pageSize: "5",
-      });
-      if (!imgs.files?.length) {
-        results.push({ service: svc.title, folder: best.folder.name, status: "no_image" });
-        continue;
-      }
+      for (const row of rows!) {
+        let best: { folder: any; score: number } | null = null;
+        for (const f of folders.files) {
+          const score = similarity(row.title, f.name);
+          if (!best || score > best.score) best = { folder: f, score };
+        }
+        if (!best || best.score < 0.4) {
+          results.push({ table, item: row.title, status: "no_match" });
+          continue;
+        }
 
-      try {
-        const file = imgs.files[0];
-        const raw = await downloadDriveFile(file.id);
-        const ext = extFromMime(file.mimeType || "image/jpeg");
-        const path = `services/drive-${svc.id}-${Date.now()}.${ext}`;
-        const { error: upErr } = await admin.storage
-          .from("service-images")
-          .upload(path, raw, { contentType: file.mimeType || "image/jpeg", upsert: true });
-        if (upErr) throw upErr;
-        const { data: pub } = admin.storage.from("service-images").getPublicUrl(path);
-        await admin.from("services").update({ image_url: pub.publicUrl }).eq("id", svc.id);
-        results.push({
-          service: svc.title, folder: best.folder.name,
-          score: best.score.toFixed(2), status: "updated", url: pub.publicUrl,
+        const imgs = await driveFetch("/files", {
+          q: `'${best.folder.id}' in parents and mimeType contains 'image/' and trashed=false`,
+          fields: "files(id,name,mimeType)",
+          pageSize: "5",
         });
-      } catch (e) {
-        results.push({ service: svc.title, folder: best.folder.name, status: "error", error: String(e) });
+        if (!imgs.files?.length) {
+          results.push({ table, item: row.title, folder: best.folder.name, status: "no_image" });
+          continue;
+        }
+
+        try {
+          const file = imgs.files[0];
+          const raw = await downloadDriveFile(file.id);
+          const ext = extFromMime(file.mimeType || "image/jpeg");
+          const path = `${table}/drive-${row.id}-${Date.now()}.${ext}`;
+          const { error: upErr } = await admin.storage
+            .from("service-images")
+            .upload(path, raw, { contentType: file.mimeType || "image/jpeg", upsert: true });
+          if (upErr) throw upErr;
+          const { data: pub } = admin.storage.from("service-images").getPublicUrl(path);
+          await admin.from(table).update({ image_url: pub.publicUrl }).eq("id", row.id);
+          results.push({
+            table, item: row.title, folder: best.folder.name,
+            score: best.score.toFixed(2), status: "updated", url: pub.publicUrl,
+          });
+        } catch (e) {
+          results.push({ table, item: row.title, folder: best.folder.name, status: "error", error: String(e) });
+        }
       }
     }
+
+    await syncTable("services");
+    await syncTable("premium_services");
+
 
     return new Response(JSON.stringify({ success: true, results }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
