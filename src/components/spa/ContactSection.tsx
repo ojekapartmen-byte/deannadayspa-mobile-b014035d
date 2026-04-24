@@ -1,4 +1,4 @@
-import { Phone, MapPin, MessageCircle } from "lucide-react";
+import { Phone, MapPin, MessageCircle, Download } from "lucide-react";
 import { useSiteContent } from "@/hooks/useSpaData";
 
 const ContactSection = () => {
@@ -6,6 +6,21 @@ const ContactSection = () => {
   const waNumber = content?.wa_number || "6281999231518";
   const address = content?.contact_address || "Bali, Indonesia";
   const email = content?.contact_email || "";
+  const brochureUrl = content?.brochure_url || "";
+  const brochureButtonText = content?.brochure_button_text || "Download Brochure";
+  const brochureButtonVisible = content?.brochure_button_visible !== "false" && !!brochureUrl;
+
+  const handleDownloadBrochure = () => {
+    if (!brochureUrl) return;
+    const a = document.createElement("a");
+    a.href = brochureUrl;
+    a.download = "brochure.pdf";
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
 
   return (
     <section id="contact" className="py-12 md:py-16 px-4 bg-spa-teal-light pb-24 md:pb-16">
@@ -36,15 +51,26 @@ const ContactSection = () => {
           </div>
         </div>
 
-        <a
-          href={`https://wa.me/${waNumber}?text=${encodeURIComponent("Hi, I'd like to make an appointment")}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold text-sm md:text-base tracking-wider uppercase px-8 md:px-12 py-3.5 md:py-4 rounded-full shadow-elevated transition-transform hover:scale-105"
-        >
-          <MessageCircle className="w-4 h-4 md:w-5 md:h-5" />
-          Chat on WhatsApp
-        </a>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          <a
+            href={`https://wa.me/${waNumber}?text=${encodeURIComponent("Hi, I'd like to make an appointment")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold text-sm md:text-base tracking-wider uppercase px-8 md:px-12 py-3.5 md:py-4 rounded-full shadow-elevated transition-transform hover:scale-105"
+          >
+            <MessageCircle className="w-4 h-4 md:w-5 md:h-5" />
+            Chat on WhatsApp
+          </a>
+          {brochureButtonVisible && (
+            <button
+              onClick={handleDownloadBrochure}
+              className="inline-flex items-center gap-2 bg-card border-2 border-primary text-primary font-body font-semibold text-sm md:text-base tracking-wider uppercase px-8 md:px-12 py-3.5 md:py-4 rounded-full shadow-elevated transition-transform hover:scale-105"
+            >
+              <Download className="w-4 h-4 md:w-5 md:h-5" />
+              {brochureButtonText}
+            </button>
+          )}
+        </div>
       </div>
     </section>
   );
