@@ -119,10 +119,34 @@ const AdminServices = () => {
     setDialogOpen(true);
   };
 
+  const [syncing, setSyncing] = useState(false);
+  const handleSyncDrive = async () => {
+    if (!confirm("Sinkronkan gambar dari Google Drive? Gambar service akan diganti dengan gambar dari folder Drive yang namanya cocok.")) return;
+    setSyncing(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("sync-drive-images");
+      if (error) throw error;
+      const updated = data?.results?.filter((r: any) => r.status === "updated").length ?? 0;
+      const skipped = (data?.results?.length ?? 0) - updated;
+      toast.success(`Sync selesai: ${updated} diperbarui, ${skipped} dilewati`);
+      queryClient.invalidateQueries({ queryKey: ["admin-services"] });
+      queryClient.invalidateQueries({ queryKey: ["services"] });
+    } catch (e: any) {
+      toast.error(e.message ?? "Gagal sync");
+    } finally {
+      setSyncing(false);
+    }
+  };
+
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-2 flex-wrap">
         <h1 className="text-2xl font-bold text-foreground">Kelola Services</h1>
+        <div className="flex items-center gap-2">
+          <Button size="sm" variant="outline" onClick={handleSyncDrive} disabled={syncing}>
+            {syncing ? <Loader2 className="w-4 h-4 mr-1 animate-spin" /> : <RefreshCw className="w-4 h-4 mr-1" />}
+            Sync Drive
+          </Button>
         <Dialog open={dialogOpen} onOpenChange={(o) => { setDialogOpen(o); if (!o) { setEditing(null); setForm(emptyService); } }}>
           <DialogTrigger asChild>
             <Button size="sm"><Plus className="w-4 h-4 mr-1" />Tambah</Button>
