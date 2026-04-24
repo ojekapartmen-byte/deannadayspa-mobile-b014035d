@@ -1,6 +1,7 @@
 import React from "react";
 import { useSiteContent } from "@/hooks/useSpaData";
 import { Button } from "@/components/ui/button";
+import { Download } from "lucide-react";
 
 const HeroSection = () => {
   const { data: content, isLoading } = useSiteContent();
@@ -16,10 +17,25 @@ const HeroSection = () => {
   const heroButtonVisible = content?.hero_button_visible !== "false";
   const heroImageUrl = content?.hero_image || 'https://images.unsplash.com/photo-1540555700371-41c1741f1a9a?q=80&w=2070&auto=format&fit=crop';
   const waNumber = content?.wa_number || "6281999231518";
+  const brochureUrl = content?.brochure_url || "";
+  const brochureButtonText = content?.brochure_button_text || "Download Brochure";
+  const brochureButtonVisible = content?.brochure_button_visible !== "false" && !!brochureUrl;
 
   const handleContactUs = () => {
     const waUrl = `https://wa.me/${waNumber.replace(/[^0-9]/g, '')}`;
     window.open(waUrl, "_blank");
+  };
+
+  const handleDownloadBrochure = () => {
+    if (!brochureUrl) return;
+    const a = document.createElement("a");
+    a.href = brochureUrl;
+    a.download = "brochure.pdf";
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
 
   return (
@@ -50,14 +66,26 @@ const HeroSection = () => {
             {heroDescription}
           </p>
           
-          {heroButtonVisible && (
-            <Button 
-              onClick={handleContactUs}
-              className="mt-10 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-base md:text-xl px-10 md:px-16 py-7 md:py-8 rounded-full shadow-2xl transition-all hover:scale-105 active:scale-95"
-            >
-              {heroButtonText}
-            </Button>
-          )}
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            {heroButtonVisible && (
+              <Button
+                onClick={handleContactUs}
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-base md:text-xl px-10 md:px-16 py-7 md:py-8 rounded-full shadow-2xl transition-all hover:scale-105 active:scale-95"
+              >
+                {heroButtonText}
+              </Button>
+            )}
+            {brochureButtonVisible && (
+              <Button
+                onClick={handleDownloadBrochure}
+                variant="outline"
+                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-white/60 hover:text-white font-semibold text-base md:text-xl px-10 md:px-16 py-7 md:py-8 rounded-full shadow-2xl transition-all hover:scale-105 active:scale-95"
+              >
+                <Download className="mr-2 !w-5 !h-5" />
+                {brochureButtonText}
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </section>
