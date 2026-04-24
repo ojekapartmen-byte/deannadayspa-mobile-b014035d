@@ -195,6 +195,7 @@ const AdminServices = () => {
             </form>
           </DialogContent>
         </Dialog>
+        </div>
       </div>
 
       {isLoading ? (
