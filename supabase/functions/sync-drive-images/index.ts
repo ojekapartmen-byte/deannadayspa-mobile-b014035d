@@ -1,6 +1,5 @@
 // @ts-nocheck
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
-import { ImageMagick, initializeImageMagick, MagickFormat } from "https://deno.land/x/imagemagick_deno@0.0.31/mod.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
