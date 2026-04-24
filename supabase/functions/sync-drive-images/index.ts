@@ -131,12 +131,13 @@ Deno.serve(async (req) => {
       }
 
       try {
-        const raw = await downloadDriveFile(imgs.files[0].id);
-        const processed = await processImage(raw);
-        const path = `services/drive-${svc.id}-${Date.now()}.jpg`;
+        const file = imgs.files[0];
+        const raw = await downloadDriveFile(file.id);
+        const ext = extFromMime(file.mimeType || "image/jpeg");
+        const path = `services/drive-${svc.id}-${Date.now()}.${ext}`;
         const { error: upErr } = await admin.storage
           .from("service-images")
-          .upload(path, processed, { contentType: "image/jpeg", upsert: true });
+          .upload(path, raw, { contentType: file.mimeType || "image/jpeg", upsert: true });
         if (upErr) throw upErr;
         const { data: pub } = admin.storage.from("service-images").getPublicUrl(path);
         await admin.from("services").update({ image_url: pub.publicUrl }).eq("id", svc.id);
