@@ -13,6 +13,7 @@ import {
   Loader2,
   ImageIcon,
   Gift,
+  FileDown,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +25,7 @@ const navItems = [
   { label: "Bookings", icon: CalendarCheck, path: "/admin/bookings" },
   { label: "Konten", icon: FileText, path: "/admin/content" },
   { label: "Hero", icon: ImageIcon, path: "/admin/hero" },
+  { label: "Brochure", icon: FileDown, path: "/admin/brochure" },
 ];
 
 const AdminLayout = () => {
