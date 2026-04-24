@@ -52,34 +52,15 @@ async function downloadDriveFile(fileId: string): Promise<Uint8Array> {
   return new Uint8Array(await r.arrayBuffer());
 }
 
-let magickReady = false;
-async function ensureMagick() {
-  if (!magickReady) {
-    await initializeImageMagick();
-    magickReady = true;
-  }
+// Note: keep original Drive image as-is (JPG/PNG/WebP). Frontend uses object-cover
+// + responsive sizing, and Supabase storage can serve transformed variants if needed.
+function extFromMime(mime: string): string {
+  if (mime.includes("png")) return "png";
+  if (mime.includes("webp")) return "webp";
+  if (mime.includes("gif")) return "gif";
+  return "jpg";
 }
 
-async function processImage(input: Uint8Array): Promise<Uint8Array> {
-  await ensureMagick();
-  return await new Promise<Uint8Array>((resolve) => {
-    ImageMagick.read(input, (img) => {
-      // cover crop to 800x800
-      const w = img.width;
-      const h = img.height;
-      const target = 800;
-      const scale = Math.max(target / w, target / h);
-      const newW = Math.round(w * scale);
-      const newH = Math.round(h * scale);
-      img.resize(newW, newH);
-      const cropX = Math.round((newW - target) / 2);
-      const cropY = Math.round((newH - target) / 2);
-      img.crop({ x: cropX, y: cropY, width: target, height: target });
-      img.quality = 85;
-      img.write(MagickFormat.Jpeg, (data) => resolve(new Uint8Array(data)));
-    });
-  });
-}
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
