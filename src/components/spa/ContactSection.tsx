@@ -10,16 +10,23 @@ const ContactSection = () => {
   const brochureButtonText = content?.brochure_button_text || "Download Brochure";
   const brochureButtonVisible = content?.brochure_button_visible !== "false" && !!brochureUrl;
 
-  const handleDownloadBrochure = () => {
+  const handleDownloadBrochure = async () => {
     if (!brochureUrl) return;
-    const a = document.createElement("a");
-    a.href = brochureUrl;
-    a.download = "brochure.pdf";
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    try {
+      const res = await fetch(brochureUrl, { cache: "no-store" });
+      if (!res.ok) throw new Error("fetch failed");
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "deanna-day-spa-brochure.pdf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch {
+      window.open(brochureUrl, "_blank", "noopener,noreferrer");
+    }
   };
 
   return (
